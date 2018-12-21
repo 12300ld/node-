@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/iconfont.css">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/register.css">
+	<script src="jquery-1.8.3.min.js"></script>
+</head>
+<body>
+	<!-- 头部 -->
+	<header>
+		<div class="con clearfix">
+		<div class="pic"><img src="img/1.png" alt=""></div>
+		<div class="logotext">欢迎注册</div>
+		<div class="text"><span>已有账号?&nbsp;&nbsp;</span><span><a href="login.html">请登录></a></span></div>
+		</div>
+
+	</header>
+	<div class="fixed">
+		<ul>
+			<li>调</li>
+			<li>查</li>
+			<li>问</li>
+			<li>卷</li>
+		</ul>
+	</div>
+
+	<!-- 内容容器 -->
+	<div class="cont clearfix">
+		<!-- 进度条 -->
+		<div class="pro clearfix">
+
+			<div class="div1">
+				<div class="yuan">1</div >
+			验证手机号
+			</div>
+			<div class="dian1">.........</div>
+
+			<div class="div2">
+				<div class="yuan">2</div>填写账号信息
+			</div>
+			<div class="dian2">.........</div>
+			<div class="div3">
+				<div class="yuan">3</div>注册成功
+			</div>
+		</div>
+
+		<!-- 下拉列表框 -->
+		<div class="sel">
+		<div class="lt">
+			<select name="city" id="city" >
+				<option value="1" selected>中国0086</option>
+			</select>
+		</div>
+		<div class="rt">
+			<input type="text" id="inp" placeholder="建议使用常用手机号"><span id="xiaodd"></span>
+		</div>
+
+			<!-- 隐藏块 -->
+		<div class="hid ">
+			<div class="search">
+				<div class="sousuo">
+				<i class="iconfont icon-sousuo"></i></div>
+				<div class="inpt">
+				<input type="text" id="inpt" placeholder="搜索您的国家">
+				</div>
+			</div>
+		</div>
+
+
+		</div>
+		<!-- 验证按钮 -->
+		<div class="btn" id="btn">点击按钮进行验证</div>
+		<div class="next">下一步</div>
+		<div class="tb">
+			<i class="iconfont icon-xiaoren"></i>企业用户注册
+			<i class="iconfont icon-qr_code"></i>国际站注册
+
+		</div>
+
+	</div>
+	<footer class="foot">
+		<div class="last">
+			<span><a href="">关于我们</a></span>
+			<span>|</span>
+			<span><a href="">联系我们</a></span>
+			<span>|</span>
+			<span><a href="">人才招聘</a></span>
+			<span>|</span>
+			<span><a href="">商家入驻</a></span>
+			<span>|</span>
+			<span><a href="">广告服务</a></span>
+			<span>|</span>
+			<span><a href="">手机京东</a></span>
+			<span>|</span>
+			<span><a href="">友情链接</a></span>
+			<span>|</span>
+			<span><a href="">社区联盟</a></span>
+			<span>|</span>
+			<span><a href="">京东社区</a></span>
+			<span>|</span>
+			<span><a href="">京东公益</a></span>
+			<span>|</span>
+			<span><a href="">English Site</a></span>
+			<br>
+			<span>Copyright©2004-2018  京东JD.com 版权所有</span>
+
+
+		</div>
+	</footer>
+	<!-- 遮罩层 -->
+	<div class="zhezhao">
+	<div class="zhe"></div>
+	<div class="zhao">
+		<!-- <img src="img/4.png" alt=""> -->
+		<div class="bttn"></div>
+		<div class="bbtn"></div>
+	</div>
+	</div>
+	
+	<script> 
+		$(function(){
+
+			// input鼠标移入移出
+			$('.sel').mouseover(function(){
+				$('.sel').css('border','1px solid #000');
+				$('.lt').css('border-right','1px solid #000');
+
+				
+			}).mouseout(function(){
+				$('.sel').stop('border').css('border','1px solid #ccc');
+				$('.lt').css('border-right','1px solid #ccc');
+			})
+			
+			// 隐藏块显示隐藏切换
+			$('.lt').click(function(){
+				$('.hid').show();
+
+				if(event.stopPropagation){//非IE浏览器  chrome
+				event.stopPropagation();
+					   }else{
+					   	//IE浏览器
+							event.cancelBubble=true;
+					 }
+
+			})
+			$(document).click(function(){
+				$('.hid').hide();
+			})
+
+			// 遮罩隐藏显示切换
+			// 打开页面三秒出现
+			setTimeout(function(){
+				$('.zhezhao').show()
+			},3000)
+
+			$('.bttn').click(function(){
+				$('.zhezhao').hide()
+			})
+			$('.bbtn').click(function(){
+				$('.zhezhao').hide()
+			})
+
+			// 拖拽
+				$(".zhao").mousedown(function(e){
+				// 鼠标指针
+				$(this).css("cursor","move")
+				// 获取当前show的偏移值
+				var offset=$(this).offset();
+				var x=e.pageX-offset.left;
+				var y=e.pageY-offset.top;
+				// console.log(x,y)
+				// x  y 鼠标在show中按下的位置
+
+				$(document).mousemove(function(e){
+					// 移动的距离=当前的坐标-xy
+					var ll=e.pageX-x;
+					var tt=e.pageY-y;
+					console.log(ll,tt);
+
+					//判断边界
+					if(ll<=0){
+						ll=0
+					}else if(ll>=$(document).width()-$(".zhao").width()){
+						ll=$(document).width()-$(".zhao").width()
+					}
+
+					if (tt<=0) {
+						tt=0
+					}else if(tt>=$(document).height()-$(".zhao").height()){
+						tt=$(document).height()-$(".zhao").height()
+					}
+
+					// 赋值遮罩层
+					$(".zhao").css({left:ll+'px',top:tt+'px'});
+				})
+
+			})
+
+					// 鼠标抬起
+			$(document).mouseup(function(){
+				$(this).off("mousemove");
+				$(".zhao").css("cursor","")
+
+			})
+
+		
+		
+			
+		})
+
+
+		// 注册验证 手机号
+		// 获取节点
+
+		var inp=document.getElementById('inp');
+		var xdd=document.getElementById('xiaodd');
+		var btn=document.getElementById('btn');
+			console.log(inp,xdd,btn)
+		inp.onfocus=function(){
+			xdd.innerHTML='请用手机号注册'
+		}
+		inp.onblur=function(){
+			xdd.innerHTML='';
+		}
+
+		btn.onclick=function(){
+			var val=inp.value.trim();
+			var pattern=/^1[3456789]\d{9}$/;
+
+			if(val.length==0){
+				xdd.innerHTML='手机号不能为空';
+				xdd.style.color='red';
+			}else if(pattern.test(val)){
+				xdd.innerHTML='手机号正确';
+				xdd.style.color='green';
+			}else{
+				xdd.innerHTML='手机号格式错误';
+				xdd.style.color='red';
+			}
+
+
+
+		}
+
+		
+	</script>
+</body>
+</html>
